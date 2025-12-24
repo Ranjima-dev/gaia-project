@@ -32,10 +32,8 @@ export default function LoginForm() {
 
         setErrors(newErrors);
 
-        // Stop submit if errors exist
         if (Object.keys(newErrors).length > 0) return;
 
-        // ✅ Submit API call here
         console.log({ email, password, rememberMe });
     };
 

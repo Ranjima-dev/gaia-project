@@ -44,7 +44,6 @@ export default function SignUpForm() {
 
         if (Object.keys(newErrors).length > 0) return;
 
-        // ✅ Submit API here
         console.log({ email, password, rememberMe });
     };
 
