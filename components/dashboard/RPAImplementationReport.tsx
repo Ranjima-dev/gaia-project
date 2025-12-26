@@ -59,10 +59,10 @@ const COLORS = {
 
 export default function RPAImplementationReport() {
     return (
-        <div className="rounded-3xl bg-white p-8 shadow-sm">
+        <div className="rounded-3xl bg-white px-6 pt-5 pb-6 shadow-sm h-full">
             {/* Header */}
             <div className="mb-6 flex items-center justify-between">
-                <h2 className="text-3xl font-bold text-gray-900">
+                <h2 className="text-lg font-bold text-gray-900">
                     RPA Implementation Report
                 </h2>
                 <ArrowRight className="h-7 w-7 text-indigo-500" />
@@ -73,7 +73,7 @@ export default function RPAImplementationReport() {
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={data}
-                        barSize={25}
+                        barSize={15}
                         margin={{ top: 10, right: 20, left: 0, bottom: 10 }}
                     >
                         <CartesianGrid

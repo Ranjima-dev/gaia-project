@@ -4,8 +4,11 @@ import { useState } from "react";
 import Button from "@/components/ui/Button";
 import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
+import { generateMockToken, setAuthToken } from "@/lib/auth";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
 
@@ -35,6 +38,11 @@ export default function LoginForm() {
         if (Object.keys(newErrors).length > 0) return;
 
         console.log({ email, password, rememberMe });
+
+        const token = generateMockToken();
+        setAuthToken(token);
+
+        router.replace("/dashboard");
     };
 
     return (
@@ -107,7 +115,7 @@ export default function LoginForm() {
                             onClick={() => setShowPassword(!showPassword)}
                             className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                         >
-                            {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
 

@@ -1,3 +1,5 @@
+'use client'
+
 import StatCard from "@/components/ui/StatCard";
 import UserActivityTable from "@/components/dashboard/UserActivityTable";
 import CostBenefitChart from "@/components/dashboard/CostBenefitChart";
@@ -6,10 +8,13 @@ import TaskSuitability from "@/components/dashboard/TaskSuitability";
 import { MdArrowOutward } from "react-icons/md";
 import { SemiGauge } from "../ui/SemiGauge";
 import RPAImplementationReport from "./RPAImplementationReport";
+import CostBenefitKPIs from "./CostBenefitKPIs";
+import { useRouter } from "next/navigation";
 
 export default function DashboardContent() {
+    const router = useRouter();
     return (
-        <>
+        <div className="space-y-6">
             {/* KPI GRID */}
             <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-[2fr_2fr_1fr] gap-6">
                 <StatCard
@@ -45,17 +50,48 @@ export default function DashboardContent() {
 
 
             {/* MAIN GRID */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-                <UserActivityTable />
-                <CostBenefitChart />
+            <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1.5fr] gap-5">
+                <div
+                    onClick={() => router.push("/user-activity")}
+                    style={{ cursor: "pointer" }}
+                >
+                    <UserActivityTable />
+                </div>
+                <div className="space-y-4">
+                    <div
+                        onClick={() => router.push("/cost-benefit")}
+                        style={{ cursor: "pointer" }}
+                    >
+                        <CostBenefitChart />
+                    </div>
+                    <CostBenefitKPIs />
+                </div>
             </div>
 
             {/* BOTTOM GRID */}
-            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] gap-5">
-                <RPAImplementationReport />
-                <ROIByTask />
-                <TaskSuitability />
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1.5fr_1.5fr] gap-5 items-stretch">
+                <div
+                    onClick={() => router.push("/rpa-implementation")}
+                    className="h-full cursor-pointer"
+                >
+                    <RPAImplementationReport />
+                </div>
+
+                <div
+                    onClick={() => router.push("/savings")}
+                    className="h-full cursor-pointer"
+                >
+                    <ROIByTask />
+                </div>
+
+                <div
+                    onClick={() => router.push("/task-suitability")}
+                    className="h-full cursor-pointer"
+                >
+                    <TaskSuitability />
+                </div>
             </div>
-        </>
+
+        </div>
     );
 }

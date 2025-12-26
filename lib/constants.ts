@@ -9,7 +9,10 @@ import {
   LogOut,
 } from "lucide-react";
 
-export const SIDEBAR_TOP_ITEMS = [
+import type { SidebarLinkItem, SidebarActionItem } from "@/types/sidebar";
+
+/* ✅ TOP items = LINKS ONLY */
+export const SIDEBAR_TOP_ITEMS: SidebarLinkItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: Home },
   { label: "Savings & ROI", href: "/savings", icon: BarChart2 },
   { label: "Task Suitability", href: "/task-suitability", icon: CheckSquare },
@@ -18,7 +21,8 @@ export const SIDEBAR_TOP_ITEMS = [
   { label: "Export", href: "/export", icon: Download },
 ];
 
-export const SIDEBAR_BOTTOM_ITEMS = [
+/* ✅ BOTTOM items = LINKS + ACTIONS */
+export const SIDEBAR_BOTTOM_ITEMS: (SidebarLinkItem | SidebarActionItem)[] = [
   { label: "Settings", href: "/settings", icon: Settings },
-  { label: "Log out", href: "/logout", icon: LogOut, danger: true },
+  { label: "Log out", icon: LogOut, danger: true, action: "logout" },
 ];
