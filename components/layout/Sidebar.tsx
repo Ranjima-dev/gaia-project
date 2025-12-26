@@ -8,12 +8,13 @@ import {
     SIDEBAR_TOP_ITEMS,
     SIDEBAR_BOTTOM_ITEMS,
 } from "@/lib/constants";
+import avatarImg from "@/assets/dashboard/avatar-img.png"
 
 export default function Sidebar() {
     const pathname = usePathname();
 
     return (
-        <aside className="w-[280px] bg-white border-r border-gray-200 flex flex-col justify-between px-4 py-6 ml-5 mb-3">
+        <aside className="w-[280px] bg-white flex flex-col justify-between px-4 py-6 ml-5 mb-3 rounded-lg">
             <nav className="space-y-2">
                 {SIDEBAR_TOP_ITEMS.map((item) => {
                     const isActive = pathname === item.href;
@@ -46,11 +47,12 @@ export default function Sidebar() {
                 {/* User Info */}
                 <div className="flex items-center gap-3 px-2">
                     <Image
-                        src="/avatar.jpg"
+                        src={avatarImg}
                         alt="User"
                         width={40}
                         height={40}
                         className="rounded-full"
+                        priority
                     />
                     <div>
                         <p className="text-sm font-semibold text-gray-800">

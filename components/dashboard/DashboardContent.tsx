@@ -3,39 +3,59 @@ import UserActivityTable from "@/components/dashboard/UserActivityTable";
 import CostBenefitChart from "@/components/dashboard/CostBenefitChart";
 import ROIByTask from "@/components/dashboard/ROIByTask";
 import TaskSuitability from "@/components/dashboard/TaskSuitability";
+import { MdArrowOutward } from "react-icons/md";
+import { SemiGauge } from "../ui/SemiGauge";
+import RPAImplementationReport from "./RPAImplementationReport";
 
 export default function DashboardContent() {
     return (
         <>
             {/* KPI GRID */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-[2fr_2fr_1fr] gap-6">
                 <StatCard
+                    className="lg:col-span-1"
                     title="Total RPA Candidates"
-                    value={7}
+                    value={
+                        <span className="flex items-center gap-1">
+                            <span className="text-5xl">7</span>
+                            <MdArrowOutward className="text-indigo-600 text-xl" />
+                        </span>
+                    }
                     subtitle="Increase compared to last week"
                 />
+
                 <StatCard
+                    className="lg:col-span-1"
                     title="Organizational ROI"
-                    value="408.1%"
+                    value={<span className="text-5xl">408.1%</span>}
                     subtitle="You closed 96 out of 100 deals"
                 />
+
                 <StatCard
+                    className="lg:col-span-1"
                     title="Avg. Payback Period"
-                    value="2.4 months"
+                    value={
+                        <div className="flex justify-center w-full">
+                            <SemiGauge value={2.4} max={6} label="2.4 months" />
+                        </div>
+                    }
                 />
+
             </div>
 
+
             {/* MAIN GRID */}
-            {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
                 <UserActivityTable />
                 <CostBenefitChart />
-            </div> */}
+            </div>
 
             {/* BOTTOM GRID */}
-            {/* <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_1fr] gap-5">
+                <RPAImplementationReport />
                 <ROIByTask />
                 <TaskSuitability />
-            </div> */}
+            </div>
         </>
     );
 }
