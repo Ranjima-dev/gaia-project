@@ -1,0 +1,73 @@
+{
+  "app": {
+    "title": "RPA Opportunity Dashboard",
+    "lastUpdated": "Last updated: {{date}}"
+  },
+
+  "header": {
+    "filter": "Filter",
+    "export": "Export"
+  },
+
+  "dashboard": {
+    "title": "Dashboard",
+    "totalSavings": "Total Annual Savings",
+    "organizationROI": "Organization-wide ROI",
+    "averagePayback": "Average Payback"
+  },
+
+  "reports": {
+    "allGenerated": "All Generated Report",
+    "searchPlaceholder": "Type to search",
+    "name": "Name",
+    "status": "Status",
+    "timeDate": "Time & Date",
+    "size": "Size",
+    "action": "Action",
+    "showEntries": "Show",
+    "entries": "entries",
+    "page": "Page {{current}} of {{total}}"
+  },
+
+  "status": {
+    "processing": "Processing...",
+    "generated": "Generated",
+    "failed": "Failed"
+  },
+
+  "actions": {
+    "download": "Download",
+    "view": "View",
+    "changePassword": "Change Password",
+    "saveChanges": "Save Changes",
+    "verifyEmail": "Verify Email",
+    "changePhoto": "Change Photo"
+  },
+
+  "settings": {
+    "personalInfo": "Personal Information",
+    "security": "Security",
+    "manageSecurity": "Manage Your Account Security Settings",
+    "name": "Name",
+    "email": "Email",
+    "birthday": "Birthday",
+    "country": "Country",
+    "userId": "User ID",
+    "gender": "Gender"
+  },
+
+  "table": {
+    "task": "Task",
+    "suitability": "Suitability",
+    "roi": "ROI",
+    "quadrant": "Quadrant",
+    "quickWins": "Quick Wins",
+    "highROIComplex": "High ROI but Complex",
+    "reEvaluate": "Re-evaluate"
+  },
+
+  "language": {
+    "english": "English",
+    "japanese": "Japanese"
+  }
+}

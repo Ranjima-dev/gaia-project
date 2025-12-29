@@ -9,6 +9,7 @@
   --auth-subtitle: #868ea7;
   --auth-required: #e53e3e;
   --forgot-password: #465fff;
+  --checkbox-color: #2675e2;
 
   --input-border: #e0e5f2;
   --button-primary: #465fff;
@@ -17,4 +18,12 @@
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+input[type="checkbox"] {
+  accent-color: #d1d5db;
+}
+
+input[type="checkbox"]:checked {
+  accent-color: var(--button-primary);
 }

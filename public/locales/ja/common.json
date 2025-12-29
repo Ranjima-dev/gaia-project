@@ -1,0 +1,73 @@
+{
+  "app": {
+    "title": "RPA機会ダッシュボード",
+    "lastUpdated": "最終更新日：{{date}}"
+  },
+
+  "header": {
+    "filter": "フィルター",
+    "export": "エクスポート"
+  },
+
+  "dashboard": {
+    "title": "ダッシュボード",
+    "totalSavings": "年間総節約額",
+    "organizationROI": "全体ROI",
+    "averagePayback": "平均回収期間"
+  },
+
+  "reports": {
+    "allGenerated": "生成されたレポート一覧",
+    "searchPlaceholder": "検索",
+    "name": "名前",
+    "status": "ステータス",
+    "timeDate": "日時",
+    "size": "サイズ",
+    "action": "操作",
+    "showEntries": "表示",
+    "entries": "件",
+    "page": "{{total}} ページ中 {{current}} ページ"
+  },
+
+  "status": {
+    "processing": "処理中...",
+    "generated": "生成済み",
+    "failed": "失敗"
+  },
+
+  "actions": {
+    "download": "ダウンロード",
+    "view": "表示",
+    "changePassword": "パスワード変更",
+    "saveChanges": "変更を保存",
+    "verifyEmail": "メール確認",
+    "changePhoto": "写真を変更"
+  },
+
+  "settings": {
+    "personalInfo": "個人情報",
+    "security": "セキュリティ",
+    "manageSecurity": "アカウントのセキュリティ設定を管理",
+    "name": "名前",
+    "email": "メール",
+    "birthday": "生年月日",
+    "country": "国",
+    "userId": "ユーザーID",
+    "gender": "性別"
+  },
+
+  "table": {
+    "task": "タスク",
+    "suitability": "適合度",
+    "roi": "ROI",
+    "quadrant": "分類",
+    "quickWins": "クイックウィン",
+    "highROIComplex": "高ROIだが複雑",
+    "reEvaluate": "再評価"
+  },
+
+  "language": {
+    "english": "英語",
+    "japanese": "日本語"
+  }
+}

@@ -1,9 +1,11 @@
-import React from 'react'
+import PersonalInformationCard from "@/components/settings/PersonalInformationCard";
+import SecurityCard from "@/components/settings/SecurityCard";
 
-const page = () => {
+export default function SettingsPage() {
     return (
-        <div>settings page</div>
-    )
+        <div className="space-y-8 bg-white">
+            <PersonalInformationCard />
+            <SecurityCard />
+        </div>
+    );
 }
-
-export default page

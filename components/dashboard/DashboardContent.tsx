@@ -81,7 +81,7 @@ export default function DashboardContent() {
                     onClick={() => router.push("/savings")}
                     className="h-full cursor-pointer"
                 >
-                    <ROIByTask />
+                    <ROIByTask showArrow />
                 </div>
 
                 <div
