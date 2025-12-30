@@ -37,7 +37,7 @@ export default function CostBenefitChart() {
                 <h3 className="text-xl font-semibold text-gray-900">
                     Cost-Benefit Estimation
                 </h3>
-                <ArrowRight className="h-6 w-6 text-indigo-500" />
+                <ArrowRight className="h-5 w-5 text-indigo-500" />
             </div>
 
             {/* Chart */}

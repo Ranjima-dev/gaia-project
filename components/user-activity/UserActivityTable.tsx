@@ -67,22 +67,18 @@ export default function UserActivityTable() {
             <div className="overflow-x-auto">
                 <table className="min-w-[1100px] w-full table-fixed border-collapse">
                     <colgroup>
-                        <col className="w-[2%]" />   {/* checkbox */}
-                        <col className="w-[10%]" />  {/* user */}
-                        <col className="w-[8%]" />   {/* hours */}
-                        <col className="w-[10%]" />  {/* tasks */}
-                        <col className="w-[10%]" />  {/* efficiency */}
-                        <col className="w-[10%]" />  {/* apps */}
-                        <col className="w-[10%]" />   {/* candidates */}
+                        <col className="w-[2%]" />
+                        <col className="w-[10%]" />  
+                        <col className="w-[8%]" />   
+                        <col className="w-[10%]" /> 
+                        <col className="w-[10%]" />  
+                        <col className="w-[10%]" />  
+                        <col className="w-[10%]" /> 
                     </colgroup>
-
-
-
                     <UserActivityHeader
                         allSelected={allSelected}
                         onToggleAll={toggleAll}
                     />
-
                     <tbody className="text-sm">
                         {rows.map(row => (
                             <UserActivityRow

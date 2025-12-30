@@ -6,8 +6,10 @@ import { Eye, EyeOff } from "lucide-react";
 import Link from "next/link";
 import { generateMockToken, setAuthToken } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 export default function LoginForm() {
+    const { i18n, t } = useTranslation();
     const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
     const [rememberMe, setRememberMe] = useState(false);
@@ -48,18 +50,18 @@ export default function LoginForm() {
     return (
         <div className="w-full max-w-md">
             <h1 className="mb-2 text-[28px] sm:text-[32px] lg:text-[36px] font-semibold text-[var(--auth-title)]">
-                Sign In
+                {t("login.title")}
             </h1>
 
             <p className="mb-8 text-gray-500">
-                Enter your email and password to sign in!
+                {t("login.subtitle")}
             </p>
 
             <form className="space-y-6" onSubmit={handleSubmit} noValidate>
                 {/* Email */}
                 <div>
                     <label className="mb-1 block text-sm font-medium text-[var(--auth-title)]">
-                        Email <span className="text-[var(--auth-required)]">*</span>
+                        {t("login.emailLabel")} <span className="text-[var(--auth-required)]">*</span>
                     </label>
 
                     <input
@@ -89,7 +91,7 @@ export default function LoginForm() {
                 {/* Password */}
                 <div>
                     <label className="mb-1 block text-sm font-medium text-[var(--auth-title)]">
-                        Password <span className="text-[var(--auth-required)]">*</span>
+                        {t("login.passwordLabel")} <span className="text-[var(--auth-required)]">*</span>
                     </label>
 
                     <div className="relative">
@@ -100,7 +102,7 @@ export default function LoginForm() {
                                 setPassword(e.target.value);
                                 setErrors((prev) => ({ ...prev, password: undefined }));
                             }}
-                            placeholder="Min. 8 characters"
+                            placeholder={t("login.passwordHint")}
                             className={`w-full rounded-full border px-5 py-4 pr-12 text-sm bg-transparent
                 ${errors.password
                                     ? "border-red-500"
@@ -135,28 +137,27 @@ export default function LoginForm() {
                             onChange={(e) => setRememberMe(e.target.checked)}
                             className="h-4 w-4 rounded accent-[var(--forgot-password)]"
                         />
-                        Keep me logged in
+                        {t("login.rememberMe")}
                     </label>
 
-                    <a
-                        href="#"
+                    <Link href="/forgot-password"
                         className="font-medium text-[var(--forgot-password)]"
                     >
-                        Forget password?
-                    </a>
+                        {t("login.forgotPassword")}
+                    </Link>
                 </div>
 
                 {/* Button */}
-                <Button type="submit">Sign In</Button>
+                <Button type="submit">{t("login.title")}</Button>
             </form>
 
             <p className="mt-6 text-sm text-[var(--auth-title)]">
-                Not registered yet?{" "}
+                {t("login.noAccount")}{" "}
                 <Link
                     href="/sign-up"
                     className="font-bold text-[var(--forgot-password)]"
                 >
-                    Create an Account
+                    {t("login.createAccount")}
                 </Link>
             </p>
         </div>

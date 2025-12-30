@@ -10,83 +10,87 @@ import {
 } from "recharts";
 import { ArrowRight } from "lucide-react";
 
-const data = [
-    {
-        name: "ITSO-K-NARA",
-        blue: 410,
-        darkOrange: 200,
-        orange: 120,
-    },
-    {
-        name: "ITSO-K-NARA",
-        blue: 90,
-        lavender: 450,
-        orange: 120,
-    },
-    {
-        name: "ITSO-K-NARA",
-        blue: 70,
-        lavender: 230,
-        orange: 60,
-    },
-    {
-        name: "ITSO-K-NARA",
-        blue: 90,
-        teal: 450,
-        orange: 120,
-    },
-    {
-        name: "ITSO-K-NARA",
-        blue: 90,
-        lavender: 450,
-        orange: 120,
-    },
-    {
-        name: "ITSO-K-NARA",
-        blue: 90,
-        lavender: 450,
-        orange: 120,
-    },
-];
-
-const COLORS = {
-    blue: "#8FA2FF",
-    teal: "#BFE6E3",
-    lavender: "#F1E2F4",
-    orange: "#FFCB85",
-    darkOrange: "#FFAF00",
+type LegendItem = {
+    key: string;
+    label: string;
+    color: string;
 };
 
-export default function RPAImplementationReport() {
+interface Props {
+    title: string;
+    data: any[];
+    legend?: LegendItem[];
+    showArrow?: boolean;
+    xAxisLabel?: string;
+    yAxisLabel?: string;
+}
+
+const DEFAULT_COLORS = [
+    "#8FA2FF",
+    "#FFCB85",
+    "#BFE6E3",
+    "#FFAF00",
+    "#F1E2F4",
+];
+
+export default function RPAImplementationReport({
+    title,
+    data,
+    legend,
+    showArrow = false,
+    xAxisLabel,
+    yAxisLabel,
+}: Props) {
+    const barKeys =
+        legend?.map(l => l.key) ??
+        Object.keys(data?.[0] || {}).filter(k => k !== "name");
+
     return (
         <div className="rounded-3xl bg-white px-6 pt-5 pb-6 shadow-sm h-full">
-            {/* Header */}
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-bold text-gray-900">
-                    RPA Implementation Report
+                    {title}
                 </h2>
-                <ArrowRight className="h-7 w-7 text-indigo-500" />
+
+                {showArrow && (
+                    <ArrowRight className="h-5 w-5 text-indigo-500" />
+                )}
             </div>
 
-            {/* Chart */}
             <div className="h-[360px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={data}
                         barSize={15}
-                        margin={{ top: 10, right: 20, left: 0, bottom: 10 }}
+                        margin={{
+                            top: 10,
+                            right: 20,
+                            left: 30,
+                            bottom: legend?.length ? 40 : 20,
+                        }}
                     >
-                        <CartesianGrid
-                            stroke="#EAECEF"
-                            strokeDasharray="0"
-                            vertical={false}
-                        />
+                        <CartesianGrid stroke="#EAECEF" vertical={false} />
 
                         <XAxis
                             dataKey="name"
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: "#1F2937", fontSize: 12, fontWeight: 600 }}
+                            interval={0}
+                            tick={{
+                                fill: "#1F2937",
+                                fontSize: 12,
+                                fontWeight: 600,
+                            }}
+                            label={{
+                                value: xAxisLabel,
+                                position: "insideBottom",
+                                offset: -20,
+                                style: {
+                                    fill: "#111827",
+                                    fontSize: 13,
+                                    fontWeight: 700,
+                                },
+                            }}
                         />
 
                         <YAxis
@@ -95,22 +99,58 @@ export default function RPAImplementationReport() {
                             tick={{ fill: "#374151", fontSize: 12 }}
                             domain={[0, 800]}
                             ticks={[0, 200, 400, 600, 800]}
+                            label={{
+                                value: yAxisLabel,
+                                angle: -90,
+                                position: "insideLeft",
+                                offset: 0,
+                                style: {
+                                    fill: "#111827",
+                                    fontSize: 13,
+                                    fontWeight: 700,
+                                    textAnchor: "middle",
+                                },
+                            }}
                         />
+                        {barKeys.map((key, index) => {
+                            const color =
+                                legend?.find(l => l.key === key)?.color ??
+                                DEFAULT_COLORS[index % DEFAULT_COLORS.length];
 
-                        {/* Stack order matters */}
-                        <Bar dataKey="blue" stackId="a" fill={COLORS.blue} />
-                        <Bar dataKey="teal" stackId="a" fill={COLORS.teal} />
-                        <Bar dataKey="lavender" stackId="a" fill={COLORS.lavender} />
-                        <Bar dataKey="darkOrange" stackId="a" fill={COLORS.darkOrange} />
-                        <Bar
-                            dataKey="orange"
-                            stackId="a"
-                            fill={COLORS.orange}
-                            radius={[12, 12, 0, 0]}
-                        />
+                            return (
+                                <Bar
+                                    key={key}
+                                    dataKey={key}
+                                    stackId="a"
+                                    fill={color}
+                                    radius={
+                                        index === barKeys.length - 1
+                                            ? [12, 12, 0, 0]
+                                            : [0, 0, 0, 0]
+                                    }
+                                />
+                            );
+                        })}
                     </BarChart>
                 </ResponsiveContainer>
             </div>
+
+            {legend && legend.length > 0 && (
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+                    {legend.map(item => (
+                        <div
+                            key={item.key}
+                            className="flex items-center gap-2 text-sm font-medium text-gray-700"
+                        >
+                            <span
+                                className="h-3 w-3 rounded-full"
+                                style={{ backgroundColor: item.color }}
+                            />
+                            {item.label}
+                        </div>
+                    ))}
+                </div>
+            )}
         </div>
     );
 }

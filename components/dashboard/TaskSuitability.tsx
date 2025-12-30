@@ -32,27 +32,21 @@ const data = [
 export default function TaskSuitability() {
     return (
         <Card className="px-3 pt-5 pb-6 h-full">
-            {/* Header */}
             <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-gray-900">
                     Task Suitability
                 </h3>
                 <ArrowRight className="h-5 w-5 text-indigo-500" />
             </div>
-
-            {/* List */}
             <div className="space-y-4">
                 {data.map((item) => (
                     <div
                         key={item.label}
                         className="flex items-center justify-between rounded-full bg-[#F5F8FF] px-5 py-4"
                     >
-                        {/* Task Name */}
                         <p className="text-[14px] font-medium text-indigo-500">
                             {item.label}
                         </p>
-
-                        {/* Score */}
                         <div className="flex items-center gap-3">
                             <span
                                 className={`h-4 w-4 rounded-full ${item.color}`}

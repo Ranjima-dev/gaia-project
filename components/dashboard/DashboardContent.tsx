@@ -11,6 +11,14 @@ import RPAImplementationReport from "./RPAImplementationReport";
 import CostBenefitKPIs from "./CostBenefitKPIs";
 import { useRouter } from "next/navigation";
 
+
+const data = [
+    { name: "ITSO-K-NARA", team: 410, report: 50, email: 120, web: 180 },
+    { name: "ITSO-K-NARA", team: 90, web: 450, email: 120 },
+    { name: "ITSO-K-NARA", team: 130, web: 240, email: 70 },
+    // { name: "ITSO-K-NARA", team: 170, web: 280, email: 100 },
+];
+
 export default function DashboardContent() {
     const router = useRouter();
     return (
@@ -74,7 +82,11 @@ export default function DashboardContent() {
                     onClick={() => router.push("/rpa-implementation")}
                     className="h-full cursor-pointer"
                 >
-                    <RPAImplementationReport />
+                    <RPAImplementationReport
+                        title="RPA Implementation Report"
+                        data={data}
+                        showArrow
+                    />
                 </div>
 
                 <div
