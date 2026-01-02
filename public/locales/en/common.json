@@ -28,9 +28,120 @@
     "confirmPasswordRequired": "Please confirm your password",
     "passwordMismatch": "Passwords do not match"
   },
+  "signup": {
+    "title": "Create Account",
+    "subtitle": "Enter your email and create password to sign up!",
+    "emailLabel": "Email",
+    "passwordLabel": "Create Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "passwordHint": "Min. 8 characters",
+    "rememberMe": "Keep me logged in",
+    "submit": "Create Account"
+  },
+  "placeholders": {
+    "email": "mail@simple.com",
+    "password": "Min. 8 characters",
+    "confirmPassword": "Min. 8 characters"
+  },
+  "errorSignup": {
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email address",
+    "passwordRequired": "Password is required",
+    "passwordMinLength": "Minimum 8 characters required",
+    "confirmPasswordRequired": "Please confirm your password",
+    "passwordMismatch": "Passwords do not match",
+    "tokenMissing": "Token missing or invalid"
+  },
 
   "app": {
     "title": "RPA Opportunity Dashboard",
     "lastUpdated": "Last updated: {{date}}"
+  },
+  "dashboard": {
+    "title": "RPA Opportunity Dashboard",
+    "lastUpdated": "Last updated",
+    "filter": "Filter",
+    "export": "Export",
+
+    "menu": {
+      "dashboard": "Dashboard",
+      "savingsRoi": "Savings & ROI",
+      "taskSuitability": "Task Suitability",
+      "userActivity": "User Activity Overview",
+      "taskPrioritization": "Task Prioritization"
+    },
+
+    "admin": {
+      "title": "Admin",
+      "settings": "Settings",
+      "logout": "Log out"
+    },
+    "stats": {
+      "totalRpaCandidates": "Total RPA Candidates",
+      "increaseLastWeek": "Increase compared to last week",
+
+      "organizationalRoi": "Organizational ROI",
+      "dealsClosed": "You closed {{closed}} out of {{total}} deals",
+
+      "avgPaybackPeriod": "Avg. Payback Period",
+      "months": "{{value}} months"
+    },
+    "userActivity": {
+      "title": "User Activity Overview",
+      "sortByActiveHours": "Sort by Active Hours",
+
+      "table": {
+        "userComputer": "User / Computer",
+        "activeHours": "Active Hours",
+        "mainTasks": "Main Tasks"
+      },
+
+      "tasks": {
+        "teamCollaboration": "Team Collaboration",
+        "emailCommunication": "Email Communication",
+        "fileManagement": "File Management",
+        "reportExport": "Report Export"
+      },
+
+      "allUsers": "All Users"
+    },
+    "costBenefit": {
+      "title": "Cost-Benefit Estimation"
+    },
+
+    "activities": {
+      "teamCollaboration": "Team Collaboration",
+      "emailCollaboration": "Email Collaboration",
+      "emailCommunication": "Email Communication",
+      "fileManagement": "File Management",
+      "crmCustomerManagement": "CRM Customer Management",
+      "reportExportAnalysis": "Report Export Analysis",
+      "webResearchBrowsing": "Web Research / Browsing"
+    },
+    "kpis": {
+      "totalAnnualSavings": "Total Annual Savings",
+      "organizationWideRoi": "Organization-wide ROI",
+      "averagePayback": "Average Payback",
+      "months": "{{value}} months"
+    },
+    "reports": {
+      "rpaImplementation": "RPA Implementation Report"
+    },
+    "roiByTask": {
+      "title": "ROI by Task"
+    },
+    "actions": {
+      "reportExportDownload": "Report Export / Download"
+    },
+    "taskSuitability": {
+      "title": "Task Suitability",
+      "activities": {
+        "teamCollaboration": "Team Collaboration",
+        "emailCommunication": "Email Communication",
+        "fileManagement": "File Management",
+        "reportExportDownload": "Report Export / Download",
+        "webResearchBrowsing": "Web Research / Browsing"
+      }
+    }
   }
 }

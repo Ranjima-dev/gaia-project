@@ -28,9 +28,120 @@
     "confirmPasswordRequired": "確認用パスワードを入力してください",
     "passwordMismatch": "パスワードが一致しません"
   },
+  "signup": {
+    "title": "アカウントを作成する",
+    "subtitle": "メールアドレスを入力し、パスワードを作成して登録してください！",
+    "emailLabel": "メールアドレス*",
+    "passwordLabel": "パスワードを作成",
+    "confirmPasswordLabel": "パスワードを認証する*",
+    "passwordHint": "最低8文字",
+    "rememberMe": "ログイン状態を保持する",
+    "submit": "アカウントを作成する"
+  },
+  "placeholders": {
+    "email": "mail@simple.com",
+    "password": "8文字以上",
+    "confirmPassword": "8文字以上"
+  },
 
+  "errorSignup": {
+    "emailRequired": "メールアドレスは必須です",
+    "emailInvalid": "有効なメールアドレスを入力してください",
+    "passwordRequired": "パスワードは必須です",
+    "passwordMinLength": "8文字以上で入力してください",
+    "confirmPasswordRequired": "パスワードを確認してください",
+    "passwordMismatch": "パスワードが一致しません",
+    "tokenMissing": "トークンが無効または期限切れです"
+  },
   "app": {
     "title": "RPA機会ダッシュボード",
     "lastUpdated": "最終更新日：{{date}}"
+  },
+  "dashboard": {
+    "title": "RPA 機会ダッシュボード",
+    "lastUpdated": "最終更新",
+    "filter": "フィルター",
+    "export": "エクスポート",
+
+    "menu": {
+      "dashboard": "ダッシュボード",
+      "savingsRoi": "コスト削減とROI",
+      "taskSuitability": "タスク適合性",
+      "userActivity": "ユーザー活動概要",
+      "taskPrioritization": "優先度マトリックス"
+    },
+
+    "admin": {
+      "title": "管理者",
+      "settings": "設定",
+      "logout": "ログアウト"
+    },
+    "stats": {
+      "totalRpaCandidates": "総RPA候補数",
+      "increaseLastWeek": "先週比の増加",
+
+      "organizationalRoi": "組織全体の ROI",
+      "dealsClosed": "{{total}}件中{{closed}}件を達成",
+
+      "avgPaybackPeriod": "平均回収期間",
+      "months": "{{value}}か月"
+    },
+    "userActivity": {
+      "title": "ユーザー活動概要",
+      "sortByActiveHours": "稼働時間順に並び替え",
+
+      "table": {
+        "userComputer": "ユーザー／コンピューター",
+        "activeHours": "稼働",
+        "mainTasks": "主なタスク"
+      },
+
+      "tasks": {
+        "teamCollaboration": "チームコラボレーション",
+        "emailCommunication": "メール、コミュニケーション",
+        "fileManagement": "ファイル管理",
+        "reportExport": "レポートエクスポート"
+      },
+
+      "allUsers": "すべてのユーザー"
+    },
+    "costBenefit": {
+      "title": "費用対効果の推定"
+    },
+
+    "activities": {
+      "teamCollaboration": "チームコラボレーション",
+      "emailCollaboration": "メール対応",
+      "emailCommunication": "メール、コミュニケーション",
+      "fileManagement": "ファイル管理",
+      "crmCustomerManagement": "CRM顧客管理",
+      "reportExportAnalysis": "レポートエクスポート分析",
+      "webResearchBrowsing": "ウェブリサーチ／ブラウジング"
+    },
+    "kpis": {
+      "totalAnnualSavings": "年間総削減額",
+      "organizationWideRoi": "組織全体のROI",
+      "averagePayback": "平均回収期間",
+      "months": "{{value}}か月"
+    },
+    "reports": {
+      "rpaImplementation": "RPA導入レポート"
+    },
+    "roiByTask": {
+      "title": "タスク別ROI"
+    },
+    "actions": {
+      "reportExportDownload": "レポートエクスポート／ダウンロード"
+    },
+    "taskSuitability": {
+      "title": "タスク適合性",
+      "activities": {
+        "teamCollaboration": "チーム連携",
+        "emailCommunication": "メール対応",
+        "fileManagement": "ファイル管理",
+        "reportExportDownload": "レポート出力 / ダウンロード",
+        "webResearchBrowsing": "Webリサーチ / 閲覧"
+      }
+    }
   }
 }

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import avatarImg from "@/assets/dashboard/avatar-img.png";
@@ -11,17 +11,28 @@ import {
     SIDEBAR_TOP_ITEMS,
     SIDEBAR_BOTTOM_ITEMS,
 } from "@/lib/constants";
-import { useRouter } from "next/navigation";
 import type { SidebarLinkItem, SidebarActionItem } from "@/types/sidebar";
+import { useTranslation } from "react-i18next";
 
-function isLinkItem(item: SidebarLinkItem | SidebarActionItem): item is SidebarLinkItem {
+/* ---------------- Helpers ---------------- */
+
+function isLinkItem(
+    item: SidebarLinkItem | SidebarActionItem
+): item is SidebarLinkItem {
     return "href" in item;
 }
 
+function isRouteActive(pathname: string, href: string) {
+    return pathname === href || pathname.startsWith(`${href}/`);
+}
+
+/* ---------------- Component ---------------- */
+
 export default function Sidebar() {
     const pathname = usePathname();
-    const [collapsed, setCollapsed] = useState(false);
     const router = useRouter();
+    const { t } = useTranslation();
+    const [collapsed, setCollapsed] = useState(false);
 
     return (
         <aside
@@ -31,16 +42,17 @@ export default function Sidebar() {
                 collapsed ? "w-[80px]" : "w-[280px]"
             )}
         >
+            {/* Collapse Button */}
             <button
                 onClick={() => setCollapsed(!collapsed)}
                 className="
-          absolute -right-3 top-1/2 -translate-y-1/2
-          h-8 w-8 rounded-full bg-white
-          border border-gray-200 shadow-md
-          flex items-center justify-center
-          hover:bg-gray-50 transition
-          z-10
-        "
+                    absolute -right-3 top-1/2 -translate-y-1/2
+                    h-8 w-8 rounded-full bg-white
+                    border border-gray-200 shadow-md
+                    flex items-center justify-center
+                    hover:bg-gray-50 transition
+                    z-10
+                "
             >
                 {collapsed ? (
                     <ChevronRight className="h-4 w-4 text-gray-600" />
@@ -49,9 +61,10 @@ export default function Sidebar() {
                 )}
             </button>
 
+            {/* TOP NAV */}
             <nav className="space-y-2">
                 {SIDEBAR_TOP_ITEMS.map((item) => {
-                    const isActive = pathname === item.href;
+                    const isActive = isRouteActive(pathname, item.href);
 
                     return (
                         <Link
@@ -74,7 +87,7 @@ export default function Sidebar() {
                                         : "opacity-100"
                                 )}
                             >
-                                {item.label}
+                                {t(item.label)}
                             </span>
 
                             {isActive && (
@@ -90,7 +103,9 @@ export default function Sidebar() {
                 })}
             </nav>
 
+            {/* BOTTOM SECTION */}
             <div className="space-y-4">
+                {/* User Info */}
                 <div className="flex items-center gap-3 px-2">
                     <Image
                         src={avatarImg}
@@ -113,13 +128,15 @@ export default function Sidebar() {
                             Indo Sakura
                         </p>
                         <span className="inline-block text-xs bg-indigo-100 text-indigo-600 px-2 py-0.5 rounded-full">
-                            Admin
+                            {t("dashboard.admin.title")}
                         </span>
                     </div>
                 </div>
 
+                {/* Bottom Links */}
                 <div className="space-y-1">
                     {SIDEBAR_BOTTOM_ITEMS.map((item) => {
+                        /* Logout */
                         if ("action" in item && item.action === "logout") {
                             return (
                                 <button
@@ -134,24 +151,51 @@ export default function Sidebar() {
                                     className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors"
                                 >
                                     <item.icon className="h-5 w-5 shrink-0" />
-                                    <span className={collapsed ? "opacity-0 w-0 overflow-hidden" : ""}>
-                                        {item.label}
+                                    <span
+                                        className={
+                                            collapsed
+                                                ? "opacity-0 w-0 overflow-hidden"
+                                                : ""
+                                        }
+                                    >
+                                        {t(item.label)}
                                     </span>
                                 </button>
                             );
                         }
 
+                        /* Settings (or other links) */
                         if (isLinkItem(item)) {
+                            const isActive = isRouteActive(
+                                pathname,
+                                item.href
+                            );
+
                             return (
                                 <Link
                                     key={item.label}
                                     href={item.href}
-                                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium text-gray-600 hover:bg-gray-100 transition-colors"
+                                    className={cn(
+                                        "relative flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-colors",
+                                        isActive
+                                            ? "text-indigo-600 bg-gray-50"
+                                            : "text-gray-600 hover:bg-gray-100"
+                                    )}
                                 >
                                     <item.icon className="h-5 w-5 shrink-0" />
-                                    <span className={collapsed ? "opacity-0 w-0 overflow-hidden" : ""}>
-                                        {item.label}
+                                    <span
+                                        className={
+                                            collapsed
+                                                ? "opacity-0 w-0 overflow-hidden"
+                                                : ""
+                                        }
+                                    >
+                                        {t(item.label)}
                                     </span>
+
+                                    {isActive && (
+                                        <span className="absolute right-0 top-2 bottom-2 w-1 rounded-full bg-[var(--button-primary)]" />
+                                    )}
                                 </Link>
                             );
                         }
@@ -159,7 +203,6 @@ export default function Sidebar() {
                         return null;
                     })}
                 </div>
-
             </div>
         </aside>
     );

@@ -59,10 +59,12 @@ export default function AuthLayout({
                         />
                     </div>
 
-                    <div className="border border-white/30 rounded-2xl px-6 py-3 backdrop-blur-md bg-white/10">
-                        <p className="text-white font-medium">
-                            RPA Opportunity Dashboard
-                        </p>
+                    <div className="border border-white/30 rounded-2xl px-3 py-3 backdrop-blur-md bg-white/10">
+                        <div className="rounded-xl px-6 py-3 backdrop-blur-md bg-white">
+                            <p className="text-[#465FFF] font-medium">
+                                RPA Opportunity Dashboard
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,40 +1,43 @@
 import { ArrowRight } from "lucide-react";
 import Card from "@/components/ui/Card";
+import { useTranslation } from "react-i18next";
 
 const data = [
     {
-        label: "Team Collaboration :",
+        label: "teamCollaboration",
         score: 91,
-        color: "bg-green-500",
+        color: "bg-green-500"
     },
     {
-        label: "Email Communication :",
+        label: "emailCommunication",
         score: 84,
-        color: "bg-green-500",
+        color: "bg-green-500"
     },
     {
-        label: "File Management",
+        label: "fileManagement",
         score: 75,
-        color: "bg-amber-500",
+        color: "bg-amber-500"
     },
     {
-        label: "Report Export / Download",
+        label: "reportExportDownload",
         score: 62,
-        color: "bg-amber-500",
+        color: "bg-amber-500"
     },
     {
-        label: "Web Research / Browsing",
+        label: "webResearchBrowsing",
         score: 41,
-        color: "bg-red-500",
-    },
+        color: "bg-red-500"
+    }
 ];
 
+
 export default function TaskSuitability() {
+    const { t } = useTranslation();
     return (
         <Card className="px-3 pt-5 pb-6 h-full">
             <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-lg font-semibold text-gray-900">
-                    Task Suitability
+                    {t("dashboard.taskSuitability.title")}
                 </h3>
                 <ArrowRight className="h-5 w-5 text-indigo-500" />
             </div>
@@ -45,7 +48,7 @@ export default function TaskSuitability() {
                         className="flex items-center justify-between rounded-full bg-[#F5F8FF] px-5 py-4"
                     >
                         <p className="text-[14px] font-medium text-indigo-500">
-                            {item.label}
+                            {t(`dashboard.taskSuitability.activities.${item.label}`)}
                         </p>
                         <div className="flex items-center gap-3">
                             <span

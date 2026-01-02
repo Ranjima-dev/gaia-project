@@ -11,18 +11,33 @@ import {
 
 import type { SidebarLinkItem, SidebarActionItem } from "@/types/sidebar";
 
-/* ✅ TOP items = LINKS ONLY */
 export const SIDEBAR_TOP_ITEMS: SidebarLinkItem[] = [
-  { label: "Dashboard", href: "/dashboard", icon: Home },
-  { label: "Savings & ROI", href: "/savings", icon: BarChart2 },
-  { label: "Task Suitability", href: "/task-suitability", icon: CheckSquare },
-  { label: "User Activity Overview", href: "/user-activity", icon: Activity },
-  { label: "Task Prioritization", href: "/task-priority", icon: ListOrdered },
-  { label: "Export", href: "/export", icon: Download },
+  { label: "dashboard.menu.dashboard", href: "/dashboard", icon: Home },
+  { label: "dashboard.menu.savingsRoi", href: "/savings", icon: BarChart2 },
+  {
+    label: "dashboard.menu.taskSuitability",
+    href: "/task-suitability",
+    icon: CheckSquare,
+  },
+  {
+    label: "dashboard.menu.userActivity",
+    href: "/user-activity",
+    icon: Activity,
+  },
+  {
+    label: "dashboard.menu.taskPrioritization",
+    href: "/task-priority",
+    icon: ListOrdered,
+  },
+  { label: "dashboard.export", href: "/export", icon: Download },
 ];
 
-/* ✅ BOTTOM items = LINKS + ACTIONS */
 export const SIDEBAR_BOTTOM_ITEMS: (SidebarLinkItem | SidebarActionItem)[] = [
-  { label: "Settings", href: "/settings", icon: Settings },
-  { label: "Log out", icon: LogOut, danger: true, action: "logout" },
+  { label: "dashboard.admin.settings", href: "/settings", icon: Settings },
+  {
+    label: "dashboard.admin.logout",
+    icon: LogOut,
+    danger: true,
+    action: "logout",
+  },
 ];

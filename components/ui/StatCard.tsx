@@ -17,8 +17,7 @@ export default function StatCard({
 }: Props) {
     return (
         <Card
-            padding="p-6"
-            className={`flex items-start justify-between ${className ?? ""}`}
+            className={`p-6 flex items-start justify-between ${className ?? ""}`}
         >
             <div className="space-y-2">
                 <p className="text-xl text-black mb-8 font-bold">{title}</p>

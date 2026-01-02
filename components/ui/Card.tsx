@@ -1,20 +1,25 @@
 interface CardProps {
     children: React.ReactNode;
     className?: string;
-    padding?: string;
-    margin?: string;
+    variant?: "default" | "bordered" | "shadow" | "flat";
 }
 
 export default function Card({
     children,
     className = "",
-    padding = "p-5",
-    margin = "",
+    variant = "default",
 }: CardProps) {
+    const base = "rounded-2xl bg-white";
+
+    const variants = {
+        default: "border border-gray-200 shadow-sm",
+        bordered: "border border-gray-200",
+        shadow: "shadow-md",
+        flat: "",
+    };
+
     return (
-        <div
-            className={`rounded-2xl bg-white border border-gray-200 shadow-sm ${padding} ${margin} ${className}`}
-        >
+        <div className={`${base} ${variants[variant]} ${className}`}>
             {children}
         </div>
     );

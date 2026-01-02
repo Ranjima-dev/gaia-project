@@ -10,6 +10,7 @@ import { SemiGauge } from "../ui/SemiGauge";
 import RPAImplementationReport from "./RPAImplementationReport";
 import CostBenefitKPIs from "./CostBenefitKPIs";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
 
 
 const data = [
@@ -21,39 +22,43 @@ const data = [
 
 export default function DashboardContent() {
     const router = useRouter();
+    const { t } = useTranslation();
     return (
         <div className="space-y-6">
             {/* KPI GRID */}
-            <div className="grid grid-cols-1 gap-0 sm:grid-cols-2 lg:grid-cols-[2fr_2fr_1fr] gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_2fr_1fr] gap-6">
                 <StatCard
                     className="lg:col-span-1"
-                    title="Total RPA Candidates"
+                    title={t("dashboard.stats.totalRpaCandidates")}
                     value={
                         <span className="flex items-center gap-1">
                             <span className="text-5xl">7</span>
                             <MdArrowOutward className="text-indigo-600 text-xl" />
                         </span>
                     }
-                    subtitle="Increase compared to last week"
+                    subtitle={t("dashboard.stats.increaseLastWeek")}
                 />
 
                 <StatCard
                     className="lg:col-span-1"
-                    title="Organizational ROI"
+                    title={t("dashboard.stats.organizationalRoi")}
                     value={<span className="text-5xl">408.1%</span>}
-                    subtitle="You closed 96 out of 100 deals"
+                    subtitle={t("dashboard.stats.dealsClosed", { closed: 96, total: 100 })}
                 />
 
                 <StatCard
                     className="lg:col-span-1"
-                    title="Avg. Payback Period"
+                    title={t("dashboard.stats.avgPaybackPeriod")}
                     value={
                         <div className="flex justify-center w-full">
-                            <SemiGauge value={2.4} max={6} label="2.4 months" />
+                            <SemiGauge
+                                value={2.4}
+                                max={6}
+                                label={t("dashboard.stats.months", { value: 2.4 })}
+                            />
                         </div>
                     }
                 />
-
             </div>
 
 
@@ -83,7 +88,7 @@ export default function DashboardContent() {
                     className="h-full cursor-pointer"
                 >
                     <RPAImplementationReport
-                        title="RPA Implementation Report"
+                        title={t("dashboard.reports.rpaImplementation")}
                         data={data}
                         showArrow
                     />

@@ -1,5 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Card from "@/components/ui/Card";
+import { useTranslation } from "react-i18next";
+
 
 /* ---------------- Types ---------------- */
 
@@ -19,12 +21,12 @@ type TaskItem = {
 /* ---------------- Data ---------------- */
 
 const data: TaskItem[] = [
-    { label: "Team Collaboration", value: "561.4%", score: 100 },
-    { label: "Email Communication", value: "3.6%", score: 45 },
-    { label: "CRM Customer Management", value: "-3.5%", score: 20 },
-    { label: "Report Export Analysis", value: "50K", score: 65 },
-    { label: "File Management", value: "50K", score: 60 },
-    { label: "Web Research / Browsing", value: "50K", score: 55 },
+    { label: "teamCollaboration", value: "561.4%", score: 100 },
+    { label: "emailCommunication", value: "3.6%", score: 45 },
+    { label: "crmCustomerManagement", value: "-3.5%", score: 20 },
+    { label: "reportExportAnalysis", value: "50K", score: 65 },
+    { label: "fileManagement", value: "50K", score: 60 },
+    { label: "webResearchBrowsing", value: "50K", score: 55 }
 ];
 
 /* ---------------- Component ---------------- */
@@ -40,13 +42,14 @@ export default function ROIByTask({
 
     const trackBg =
         variant === "savings" ? "bg-indigo-50" : "bg-[#FFF8E5]";
+    const { t } = useTranslation();
 
     return (
         <Card className="px-6 pt-5 pb-6 h-full">
             {/* Header */}
             <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-lg font-bold text-gray-900">
-                    ROI by Task
+                    {t("dashboard.roiByTask.title")}
                 </h3>
 
                 {showArrow && (
@@ -63,7 +66,7 @@ export default function ROIByTask({
                         <div key={item.label}>
                             <div className="mb-1 flex items-center justify-between">
                                 <p className="text-sm font-semibold text-gray-600">
-                                    {item.label}
+                                    {t(`dashboard.activities.${item.label}`)}
                                 </p>
                                 <p className="text-sm font-medium text-gray-500">
                                     {item.value}

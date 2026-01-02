@@ -11,16 +11,18 @@ import {
 } from "recharts";
 import { ArrowRight } from "lucide-react";
 import Card from "@/components/ui/Card";
+import { useTranslation } from "react-i18next";
 
 const data = [
-    { name: "Team Collaboration", cost: -500, benefit: 780 },
-    { name: "Email Collaboration", cost: -850, benefit: 0 },
-    { name: "CRM Customer management", cost: 0, benefit: 320 },
-    { name: "Report Export Analysis", cost: 0, benefit: 900 },
-    { name: "Team Collaboration", cost: -350, benefit: 380 },
-    { name: "File Management", cost: -550, benefit: 260 },
-    { name: "Web Research / Browsing", cost: 0, benefit: 480 },
+    { key: "teamCollaboration", cost: -500, benefit: 780 },
+    { key: "emailCollaboration", cost: -850, benefit: 0 },
+    { key: "crmCustomerManagement", cost: 0, benefit: 320 },
+    { key: "reportExportAnalysis", cost: 0, benefit: 900 },
+    { key: "teamCollaboration", cost: -350, benefit: 380 },
+    { key: "fileManagement", cost: -550, benefit: 260 },
+    { key: "webResearchBrowsing", cost: 0, benefit: 480 }
 ];
+
 
 const COLORS = {
     cost: "#FFFBA6",
@@ -30,12 +32,13 @@ const COLORS = {
 };
 
 export default function CostBenefitChart() {
+    const { t } = useTranslation();
     return (
         <Card className="px-6 pt-5 pb-6">
             {/* Header */}
             <div className="mb-4 flex items-center justify-between">
                 <h3 className="text-xl font-semibold text-gray-900">
-                    Cost-Benefit Estimation
+                    {t("dashboard.costBenefit.title")}
                 </h3>
                 <ArrowRight className="h-5 w-5 text-indigo-500" />
             </div>
@@ -68,12 +71,16 @@ export default function CostBenefitChart() {
                         {/* Y Axis */}
                         <YAxis
                             type="category"
-                            dataKey="name"
+                            dataKey="key"
+                            tickFormatter={(value) =>
+                                t(`dashboard.activities.${value}`)
+                            }
                             tick={{ fill: COLORS.axis, fontSize: 13 }}
                             axisLine={false}
                             tickLine={false}
-                            width={140}
+                            width={160}
                         />
+
 
                         {/* Center reference line */}
                         <ReferenceLine x={0} stroke="#9CA3AF" />

@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import Button from "@/components/ui/Button";
+import { useTranslation } from "react-i18next";
 
 export default function SignUpForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+    const { i18n, t } = useTranslation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -25,19 +26,19 @@ export default function SignUpForm() {
         const newErrors: typeof errors = {};
 
         if (!email.trim()) {
-            newErrors.email = "Email is required";
+            newErrors.email = "errorSignup.emailRequired";
         }
 
         if (!password.trim()) {
-            newErrors.password = "Password is required";
+            newErrors.password = "errorSignup.passwordRequired";
         } else if (password.length < 8) {
-            newErrors.password = "Password must be at least 8 characters";
+            newErrors.password = "errorSignup.passwordMinLength";
         }
 
         if (!confirmPassword.trim()) {
-            newErrors.confirmPassword = "Confirm password is required";
+            newErrors.confirmPassword = "errorSignup.confirmPasswordRequired";
         } else if (password !== confirmPassword) {
-            newErrors.confirmPassword = "Passwords do not match";
+            newErrors.confirmPassword = "errorSignup.passwordMismatch";
         }
 
         setErrors(newErrors);
@@ -50,18 +51,18 @@ export default function SignUpForm() {
     return (
         <div className="w-full max-w-md">
             <h1 className="mb-2 text-[28px] sm:text-[32px] lg:text-[36px] font-semibold text-[var(--auth-title)]">
-                Create Account
+                {t("signup.title")}
             </h1>
 
             <p className="mb-8 text-[16px] text-[var(--auth-subtitle)]">
-                Enter your email and create password to sign up!
+                {t("signup.subtitle")}
             </p>
 
             <form className="space-y-6" onSubmit={handleSubmit} noValidate>
                 {/* Email */}
                 <div>
                     <label className="mb-1 block text-[14px] font-medium text-[var(--auth-title)]">
-                        Email <span className="text-[var(--auth-required)]">*</span>
+                        {t("signup.emailLabel")} <span className="text-[var(--auth-required)]">*</span>
                     </label>
 
                     <input
@@ -71,7 +72,7 @@ export default function SignUpForm() {
                             setEmail(e.target.value);
                             setErrors((prev) => ({ ...prev, email: undefined }));
                         }}
-                        placeholder="mail@simple.com"
+                        placeholder={t("placeholders.email")}
                         className={`w-full rounded-full border px-5 py-4 text-sm bg-transparent
               ${errors.email
                                 ? "border-red-500"
@@ -82,14 +83,14 @@ export default function SignUpForm() {
                     />
 
                     {errors.email && (
-                        <p className="mt-1 text-sm text-red-500">{errors.email}</p>
+                        <p className="mt-1 text-sm text-red-500">{t(errors.email)}</p>
                     )}
                 </div>
 
                 {/* Password */}
                 <div>
                     <label className="mb-1 block text-[14px] font-medium text-[var(--auth-title)]">
-                        Create Password <span className="text-[var(--auth-required)]">*</span>
+                        {t("signup.passwordLabel")} <span className="text-[var(--auth-required)]">*</span>
                     </label>
 
                     <div className="relative">
@@ -100,7 +101,7 @@ export default function SignUpForm() {
                                 setPassword(e.target.value);
                                 setErrors((prev) => ({ ...prev, password: undefined }));
                             }}
-                            placeholder="Min. 8 characters"
+                            placeholder={t("placeholders.password")}
                             className={`w-full rounded-full border px-5 py-4 pr-12 text-sm bg-transparent
                 ${errors.password
                                     ? "border-red-500"
@@ -120,14 +121,14 @@ export default function SignUpForm() {
                     </div>
 
                     {errors.password && (
-                        <p className="mt-1 text-sm text-red-500">{errors.password}</p>
+                        <p className="mt-1 text-sm text-red-500">{t(errors.password)}</p>
                     )}
                 </div>
 
                 {/* Confirm Password */}
                 <div>
                     <label className="mb-1 block text-[14px] font-medium text-[var(--auth-title)]">
-                        Confirm Password <span className="text-[var(--auth-required)]">*</span>
+                        {t("signup.confirmPasswordLabel")} <span className="text-[var(--auth-required)]">*</span>
                     </label>
 
                     <div className="relative">
@@ -141,7 +142,7 @@ export default function SignUpForm() {
                                     confirmPassword: undefined,
                                 }));
                             }}
-                            placeholder="Min. 8 characters"
+                            placeholder={t("placeholders.confirmPassword")}
                             className={`w-full rounded-full border px-5 py-4 pr-12 text-sm bg-transparent
                 ${errors.confirmPassword
                                     ? "border-red-500"
@@ -168,7 +169,7 @@ export default function SignUpForm() {
 
                     {errors.confirmPassword && (
                         <p className="mt-1 text-sm text-red-500">
-                            {errors.confirmPassword}
+                            {t(errors.confirmPassword)}
                         </p>
                     )}
                 </div>
@@ -181,11 +182,11 @@ export default function SignUpForm() {
                         onChange={(e) => setRememberMe(e.target.checked)}
                         className="h-4 w-4 rounded accent-[var(--forgot-password)]"
                     />
-                    Keep me logged in
+                    {t("signup.rememberMe")}
                 </label>
 
                 {/* Submit */}
-                <Button type="submit">Create Account</Button>
+                <Button type="submit">{t("signup.submit")}</Button>
             </form>
         </div>
     );

@@ -27,3 +27,21 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   accent-color: var(--button-primary);
 }
+
+/* Calendar */
+
+.custom-calendar {
+  --rdp-cell-size: 36px;
+  --rdp-accent-color: #4f46e5;
+  --rdp-background-color: #eef2ff;
+  font-size: 14px;
+}
+
+.rdp-caption {
+  font-weight: 600;
+}
+
+.rdp-day_selected {
+  background-color: #4f46e5;
+  color: white;
+}

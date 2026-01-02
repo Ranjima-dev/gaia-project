@@ -9,7 +9,7 @@ export function SemiGauge({
     max,
     label,
 }: SemiGaugeProps) {
-    const radius = 80;
+    const radius = 100;
     const strokeWidth = 16;
     const circumference = Math.PI * radius;
     const progress = Math.min(value / max, 1);

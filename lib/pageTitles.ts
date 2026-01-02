@@ -1,8 +1,8 @@
 export const PAGE_TITLES: Record<string, string> = {
-  "/dashboard": "Dashboard",
-  "/savings": "Savings & ROI",
-  "/task-suitability": "Task Suitability",
-  "/user-activity": "User Activity Overview",
-  "/task-priority": "Task Prioritization",
-  "/export": "Export",
+  "/dashboard": "dashboard.menu.dashboard",
+  "/savings": "dashboard.menu.savingsRoi",
+  "/task-suitability": "dashboard.menu.taskSuitability",
+  "/user-activity": "dashboard.menu.userActivity",
+  "/task-priority": "dashboard.menu.taskPrioritization",
+  "/export": "dashboard.export",
 };
