@@ -1,5 +1,6 @@
 import FirstTimeChangePasswordPage from "@/components/auth/FirstTimeChangePassword";
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
     title: "Change Password | GAIA Dashboard",
@@ -7,5 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function ChangePasswordPage() {
-    return <FirstTimeChangePasswordPage />;
+    return <Suspense>
+        <FirstTimeChangePasswordPage />
+    </Suspense>;
 }

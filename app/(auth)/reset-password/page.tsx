@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ResetPasswordPage from "@/components/auth/ResetPassword";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
     title: "Reset Password | GAIA Dashboard",
@@ -7,5 +8,7 @@ export const metadata: Metadata = {
 };
 
 export default function SignInPage() {
-    return <ResetPasswordPage />;
+    return <Suspense>
+        <ResetPasswordPage />
+    </Suspense>;
 }
