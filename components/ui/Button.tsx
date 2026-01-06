@@ -20,7 +20,7 @@ export default function Button({
     return (
         <button
             className={clsx(
-                "rounded-xl font-medium transition focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed",
+                "rounded-xl font-medium transition focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer",
 
                 // Size
                 size === "sm" && "text-sm px-4 py-2.5",

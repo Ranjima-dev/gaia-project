@@ -17,6 +17,7 @@
   },
   "resetPassword": {
     "title": "Create New Password",
+    "currentPasswordLabel": "Current Password",
     "createPasswordLabel": "Create Password",
     "confirmPasswordLabel": "Confirm Password",
     "passwordPlaceholder": "Min. 8 characters",

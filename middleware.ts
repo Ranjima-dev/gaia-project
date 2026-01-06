@@ -9,9 +9,11 @@ export function middleware(request: NextRequest) {
 
   const isAuthPage =
     pathname.startsWith("/sign-in") || pathname.startsWith("/sign-up");
+
+  const isChangePasswordPage = pathname.startsWith("/change-password");
   const isPrivateRoute = pathname.startsWith("/dashboard");
 
-  if (!token && isPrivateRoute) {
+  if (!token && isPrivateRoute && !isChangePasswordPage) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
@@ -23,5 +25,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up"],
+  matcher: ["/dashboard/:path*", "/sign-in", "/sign-up", "/change-password"],
 };

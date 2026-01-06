@@ -18,6 +18,7 @@
   "resetPassword": {
     "title": "新しいパスワードを作成",
     "createPasswordLabel": "パスワードを作成",
+    "currentPasswordLabel": "現在のパスワード",
     "confirmPasswordLabel": "パスワードを確認",
     "passwordPlaceholder": "8文字以上",
     "submitButton": "送信"

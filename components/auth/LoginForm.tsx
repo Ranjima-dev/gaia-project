@@ -7,6 +7,8 @@ import Link from "next/link";
 import { generateMockToken, setAuthToken } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
+import axiosInstance from "@/lib/axiosInstance";
+import { AUTH_ENDPOINTS } from "@/config/endpoint";
 
 export default function LoginForm() {
     const { i18n, t } = useTranslation();
@@ -20,31 +22,71 @@ export default function LoginForm() {
     const [errors, setErrors] = useState<{
         email?: string;
         password?: string;
+        form?: string;
     }>({});
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
         const newErrors: typeof errors = {};
 
-        if (!email.trim()) {
-            newErrors.email = "Email is required";
-        }
-
-        if (!password.trim()) {
-            newErrors.password = "Password is required";
-        }
+        if (!email.trim()) newErrors.email = "Email is required";
+        if (!password.trim()) newErrors.password = "Password is required";
 
         setErrors(newErrors);
-
         if (Object.keys(newErrors).length > 0) return;
 
-        console.log({ email, password, rememberMe });
+        try {
+            // const response = await axiosInstance.post(AUTH_ENDPOINTS.LOGIN, {
+            //     email,
+            //     password,
+            //     keepLoggedIn: rememberMe,
+            // });
 
-        const token = generateMockToken();
-        setAuthToken(token);
+            // const token = response.data?.data?.token;
+            // console.log("Token is:", token)
 
-        router.replace("/dashboard");
+            // if (!token) return;
+
+            // document.cookie = `auth_token=${token}; path=/`;
+            // localStorage.setItem("accessToken", token);
+
+            // router.replace("/dashboard");
+            const response = await axiosInstance.post(AUTH_ENDPOINTS.LOGIN, {
+                email,
+                password,
+                keepLoggedIn: rememberMe,
+            });
+
+            const data = response.data?.data;
+
+            // CASE 1: First login → force password change
+            if (data?.requirePasswordChange) {
+                sessionStorage.setItem("pending_user_id", data.userId);
+                sessionStorage.setItem("pending_user_email", data.email);
+
+                router.replace("/change-password");
+                return;
+            }
+
+            // CASE 2: Normal login
+            const token = data?.token;
+            if (!token) {
+                throw new Error("Token missing");
+            }
+
+            document.cookie = `auth_token=${token}; path=/`;
+            localStorage.setItem("accessToken", token);
+
+            router.replace("/dashboard");
+
+        } catch (error: any) {
+            console.error("Login failed:", error.response?.data || error.message);
+
+            setErrors({
+                form: error.response?.data?.message || "Invalid credentials",
+            });
+        }
     };
 
     return (
@@ -117,7 +159,7 @@ export default function LoginForm() {
                             onClick={() => setShowPassword(!showPassword)}
                             className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                         >
-                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                         </button>
                     </div>
 
@@ -151,7 +193,7 @@ export default function LoginForm() {
                 <Button type="submit">{t("login.title")}</Button>
             </form>
 
-            <p className="mt-6 text-sm text-[var(--auth-title)]">
+            {/* <p className="mt-6 text-sm text-[var(--auth-title)]">
                 {t("login.noAccount")}{" "}
                 <Link
                     href="/sign-up"
@@ -159,7 +201,7 @@ export default function LoginForm() {
                 >
                     {t("login.createAccount")}
                 </Link>
-            </p>
+            </p> */}
         </div>
     );
 }
